@@ -77,12 +77,15 @@ contract LoverBirdsTest is Test {
         loveBirds.setURI(1, true, rightBirbLoveUris);
         loveBirds.mint(collector1);
         loveBirds.mint(collector2);
-        vm.roll(57599);
+        vm.roll(0);
+        assertEq(loveBirds.tokenURI(0), noLoveLeftBirdExpectedUris[0]);
+        assertEq(loveBirds.tokenURI(1), noLoveRightBirdExpectedUris[1]);
+        vm.roll(28800);
         assertEq(loveBirds.tokenURI(0), noLoveLeftBirdExpectedUris[0]);
         assertEq(loveBirds.tokenURI(1), noLoveRightBirdExpectedUris[0]);
         vm.roll(57600);
         assertEq(loveBirds.tokenURI(0), noLoveLeftBirdExpectedUris[1]);
-        assertEq(loveBirds.tokenURI(1), noLoveRightBirdExpectedUris[1]);
+        assertEq(loveBirds.tokenURI(1), noLoveRightBirdExpectedUris[0]);
         vm.prank(collector1);
         loveBirds.transferFrom(collector1, collector2, 0);
         assertEq(loveBirds.tokenURI(0), loveExpectedUris[0]);

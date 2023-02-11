@@ -98,7 +98,13 @@ contract LoveBirds is ERC721, IERC2981, DefaultOperatorFilterer  {
         string memory name = _tokenId == 0 ? 'Left Bird' : 'Right Bird';
         string memory description = 'Life is better when you are with the one you love';
         string memory image;
-        if(foundLove || block.number % 86400 < 57600){
+        bool searchCondition;
+        if(_tokenId == 0){
+            searchCondition = (block.number % 86400 < 57600);
+        }else{
+            searchCondition = (block.number % 86400 >= 28800);
+        }
+        if(foundLove || searchCondition){
             image = uris[_tokenId][foundLove][0];
         }else{
             image = uris[_tokenId][foundLove][1];
