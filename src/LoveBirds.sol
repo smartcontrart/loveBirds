@@ -11,11 +11,12 @@ contract LoveBirds is ERC721, IERC2981, DefaultOperatorFilterer  {
     uint256 public tokenId;
     uint256 royaltyAmount;
     address royaltiesRecipient;
-    bool foundLove;
+    bool public foundLove;
     mapping(address => bool) private isAdmin;
-    mapping(uint256 => mapping(bool=> string)) private uris;
+    mapping(uint256 => mapping(bool=> string[])) private uris;
 
     error InvalidAddress();
+    error InvalidUris();
     error InvalidTokenId();
     error Unauthorized();
 
@@ -67,8 +68,15 @@ contract LoveBirds is ERC721, IERC2981, DefaultOperatorFilterer  {
         _burn(_tokenId);
     }
 
-    function setURI(uint256 _tokenId, bool _foundLove, string calldata _uri) external adminRequired {
-        uris[_tokenId][_foundLove] = _uri;
+    function setURI(uint256 _tokenId, bool _foundLove, string[] calldata _uris) external adminRequired {
+        if(_foundLove){
+            if(_uris.length != 1) revert InvalidUris();
+        }else{
+            if(_uris.length != 2) revert InvalidUris();
+        }
+        for(uint8 i=0; i < _uris.length; i++){
+            uris[_tokenId][_foundLove].push(_uris[i]);
+        }
     }
 
     function _afterTokenTransfer(
@@ -87,12 +95,23 @@ contract LoveBirds is ERC721, IERC2981, DefaultOperatorFilterer  {
     }
 
     function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
+        string memory name = _tokenId == 0 ? 'Left Bird' : 'Right Bird';
         string memory description = 'Life is better when you are with the one you love';
-        
-        string memory image = uris[_tokenId][foundLove];
+        string memory image;
+        bool searchCondition;
+        if(_tokenId == 0){
+            searchCondition = (block.number % 86400 < 57600);
+        }else{
+            searchCondition = (block.number % 86400 >= 28800);
+        }
+        if(foundLove || searchCondition){
+            image = uris[_tokenId][foundLove][0];
+        }else{
+            image = uris[_tokenId][foundLove][1];
+        }
         string memory attributes = '';
         bytes memory byteString = abi.encodePacked(
-            abi.encodePacked(uriComponents[0], 'test'),
+            abi.encodePacked(uriComponents[0], name),
             abi.encodePacked(uriComponents[1], description),
             abi.encodePacked(uriComponents[2], image),
             abi.encodePacked(uriComponents[3], attributes),
