@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Web3 from "web3";
 import { Button } from "react-bootstrap";
 import { AccountInfoContext } from '../Context/AccountInfo'
-import Contract  from "../contracts/Anastasis_Act1.json";
-import MintContract  from "../contracts/Anastasis_Act1.json";
+import Contract  from "../contracts/LoveBirds.json";
+import MintContract  from "../contracts/LoveBirdsAuction.json";
 
 class Connect extends Component {
   
@@ -50,10 +50,10 @@ class Connect extends Component {
       parseInt(this.context.mintContractAddress) && this.context.mintContractAddress
     )
     
-    this.context.updateAccountInfo({contractInstance: this.contractInstance})
-    this.context.updateAccountInfo({mintContractInstance: this.mintContractInstance})
-    this.getContractData();
-    this.getMintContractData();
+    await this.context.updateAccountInfo({contractInstance: this.contractInstance})
+    await this.context.updateAccountInfo({mintContractInstance: this.mintContractInstance})
+    await this.getContractData();
+    await this.getMintContractData();
     this.context.updateAccountInfo({instancesLoaded: true})
   }
 
@@ -85,11 +85,22 @@ class Connect extends Component {
 
   async getContractData(){
     if(this.context.networkId){
+      try{
+        this.context.updateAccountInfo({noahsowner: await this.contractInstance.methods.ownerOf(0).call()})
+      }catch(err){
+        this.context.updateAccountInfo({noahsowner: null})
+      }
     }
   }
 
   async getMintContractData(){
     if(this.context.networkId){
+      this.context.updateAccountInfo({auctionOpened: await this.mintContractInstance.methods.isLive().call()})
+      this.context.updateAccountInfo({startingPrice: parseInt(await this.mintContractInstance.methods.startingPrice().call())})
+      this.context.updateAccountInfo({reservePrice: parseInt(await this.mintContractInstance.methods.reservePrice().call())})
+      this.context.updateAccountInfo({minBid: parseInt(await this.mintContractInstance.methods.minBid().call())})
+      this.context.updateAccountInfo({currentTopBid: parseInt(await this.mintContractInstance.methods.currentTopBid().call())})
+      this.context.updateAccountInfo({highestBidder: parseInt(await this.mintContractInstance.methods.highestBidder().call())})
     }
   }
 

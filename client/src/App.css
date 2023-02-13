@@ -24,6 +24,10 @@ html, body{
   max-width: 120px !important;
 }
 
+.text_left{
+  text-align: left !important;
+}
+
 /* media xs */
 @media screen and (max-width: 576px) {
 
@@ -36,7 +40,10 @@ html, body{
 
 /* media md */
 @media screen and (max-width: 992px) {
-
+  .xs-center{
+    justify-content: center !important;
+    text-align: center !important;
+  }
 }
 
 /* media lg */
