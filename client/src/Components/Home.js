@@ -17,8 +17,9 @@ function Home() {
                     The collection includes 2 onchain, dynamic, NFTs.<br/>
                     Both NFTs will be auctioned separately. If a wallet owns one bird, it cannot bid on the second one, but they are meant to be together.<br/>
                     Fate will tell if the lovers will be reunited to live happily together.<br/><br/>
-                    First auction: February 14th<br/>
-                    Second auction: February 16th
+                    First auction: 2pm EST -  February 14th<br/>
+                    Second auction: 2pm EST -  February 16th<br/>
+                    24 hours each
                 </span>
             </Row>
             <Row id="description_row">
