@@ -2,10 +2,10 @@ import React, {useState, useContext, useEffect, useCallback} from "react";
 import {Container, Row, Col, Button, Spinner, Alert, Form} from 'react-bootstrap'
 import { AccountInfoContext } from "../Context/AccountInfo";
 import Timer from "./Timer";
-import lbirb from '../images/lbirb.gif'
+import allie from '../images/rbirb.svg'
 import '../App.css'
 
-function Noah() {
+function Allie() {
     let accountInfo = useContext(AccountInfoContext)
     const [alert, setAlert] = useState({active: false, content: null, variant: null})
     const [bid, setBid] =  useState(0);
@@ -75,14 +75,14 @@ function Noah() {
     //                         <Row>
     //                             <Col className="xs-center d-flex no_padding">
     //                                 <div>Auction ends in:</div>
-    //                                 <Timer time={'15 Feb 2023 16:00:00 EST'}/>
+    //                                 <Timer time={'17 Feb 2023 16:00:00 EST'}/>
     //                             </Col>
     //                         </Row>
     //                     </Container>
     //                 )
     //             }else{ 
-    //                 let time = '14 Feb 2023 16:00:00 EST'
-    //                 let statusUpdateTime = '14 Feb 2023 17:00:00 EST'
+    //                 let time = '16 Feb 2023 16:00:00 EST'
+    //                 let statusUpdateTime = '16 Feb 2023 17:00:00 EST'
     //                 if(Date.parse(time) > Date.now()){
     //                     return(
     //                         <React.Fragment>
@@ -109,10 +109,10 @@ function Noah() {
             return (
                 <>
                     <Row className="mb-2">
-                        <Col>Auction won by <a href="https://opensea.io/0x848b6f0aA41B673eF4e55AF5a80891D76bD80ca6" target="blank" rel="noopener noreferrer" style={{color: "white"}}>{getAccountStr('0x848b6f0aA41B673eF4e55AF5a80891D76bD80ca6')}</a></Col>
+                        <Col>Auction won by <a href="https://opensea.io/NFT808" target="blank" rel="noopener noreferrer" style={{color: "white"}}>{getAccountStr('0x4736b438D76d9EAf216561Ebf8B67A6eb1360DF3')}</a></Col>
                     </Row>
                     <Row>
-                        <Col><a href="https://opensea.io/assets/ethereum/0x067e7064b3e3783dadaff47af3c9c4b2ea7a4403/0" target="blank" rel="noopener noreferrer" style={{color: "white"}}>See Noah on OS</a></Col>
+                        <Col><a href="https://opensea.io/assets/ethereum/0x067e7064b3e3783dadaff47af3c9c4b2ea7a4403/1" target="blank" rel="noopener noreferrer" style={{color: "white"}}>See Noah on OS</a></Col>
                     </Row>
                 </>
             )
@@ -213,24 +213,25 @@ function Noah() {
                 <h5 className=""><b>by Smokestacks & Smartcontrart</b></h5>
             </Row>
             <Row className="d-flex align-items-center mt-5 title">
-                <h1 className=""><b>Noah</b></h1>
+                <h1><b>Allie</b></h1>
             </Row>
             <Row className="d-flex align-items-center">
-                <span className="my-5">Noah is the first love bird to be auctioned. The auction will start at 4pm on 2/14 and will last 24 hours. <br/>
-                    While Noah is not with Allie, it will spend some time looking for her<br/>
-                    What will happen if they find each other?
+                <span className="my-5">Allie is the second love bird to be auctioned. The auction will start at 4pm on 2/16 and will last 24 hours.<br/>
+                The owner of Noah cannot bid on it and therefore cannot win the auction<br/>
+                While Allie is not with Noah, it will spend some time looking for him<br/>
+                What will happen if they find each other?
                 </span>
             </Row>
             <Row id="description_row">
+                <Col>
+                    {renderUserInterface()}
+                </Col>
                 <Col xs={12} lg={6} className='mb-5'>
                     <img
-                     src={lbirb}
+                     src={allie}
                      alt='visual'
                      className="visual">
                      </img>
-                </Col>
-                <Col>
-                    {renderUserInterface()}
                 </Col>
             </Row>
             <Row className='mb-3'>
@@ -243,6 +244,6 @@ function Noah() {
      );
 }
 
-export default Noah;
+export default Allie;
 
 

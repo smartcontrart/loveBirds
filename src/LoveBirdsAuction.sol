@@ -90,8 +90,11 @@ contract LoveBirdsAuction {
         emit BidPlaced(msg.sender, _amount);
     }
 
+    function toggleAuctionStatus() public adminRequired{
+        isLive = !isLive;
+    }
+
     function settleAuction()external adminRequired{
-        if(!isLive) revert InvalidAuctionState();
         if(auctionBeneficiary == address(0)) revert InvalidAddress();
         if(currentTopBid >= reservePrice){
             isLive = false;
@@ -105,8 +108,9 @@ contract LoveBirdsAuction {
     }
 
     function cancelAuction () public  adminRequired{
-        if(!isLive) revert InvalidAuctionState();
-        returnCurrentBid();
+        if(highestBidder  != address(0)){
+            returnCurrentBid();
+        }
         isLive = false;
         emit AuctionCancelled (highestBidder, currentTopBid);
     }
@@ -120,7 +124,6 @@ contract LoveBirdsAuction {
     }
 
     function returnCurrentBid () internal {
-        if(highestBidder == address(0)) revert InvalidAddress();
         payable(highestBidder).transfer(currentTopBid);
         emit BidReturned(highestBidder, currentTopBid);
     }

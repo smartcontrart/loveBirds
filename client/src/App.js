@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Home from './Components/Home';
 import Noah from './Components/Noah';
+import Allie from './Components/Allie';
 import Connect from './Components/Connect';
 import ConnexionStatus from './Components/ConnexionStatus';
 import AccountInfoProvider from './Context/AccountInfo';
@@ -18,6 +19,7 @@ function App() {
                         <Routes>
                           <Route path="/" element={<Home/>}/>
                           <Route path="/noah" element={<Noah/>}/>
+                          <Route path="/allie" element={<Allie/>}/>
                         </Routes>
                       </Col>
                     </Row>

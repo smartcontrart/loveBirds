@@ -22,12 +22,17 @@ function Timer(props) {
 
     function startTimer(){
         let myInterval = setInterval(() => {
-            setDateNow(Date.now())
+            if(Date.now()>Date.parse(props.time)){
+                setDateNow(Date.parse(props.time))
+            }else{
+                setDateNow(Date.now())
+            }
         }, 1000)
     }
 
     startTimer()
-    return ( 
+
+    return (
         renderTimer()
      );
 }
