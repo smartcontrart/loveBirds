@@ -112,7 +112,7 @@ function Allie() {
                         <Col>Auction won by <a href="https://opensea.io/NFT808" target="blank" rel="noopener noreferrer" style={{color: "white"}}>{getAccountStr('0x4736b438D76d9EAf216561Ebf8B67A6eb1360DF3')}</a></Col>
                     </Row>
                     <Row>
-                        <Col><a href="https://opensea.io/assets/ethereum/0x067e7064b3e3783dadaff47af3c9c4b2ea7a4403/1" target="blank" rel="noopener noreferrer" style={{color: "white"}}>See Noah on OS</a></Col>
+                        <Col><a href="https://opensea.io/assets/ethereum/0x067e7064b3e3783dadaff47af3c9c4b2ea7a4403/1" target="blank" rel="noopener noreferrer" style={{color: "white"}}>See Allie on OS</a></Col>
                     </Row>
                 </>
             )
