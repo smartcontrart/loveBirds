@@ -74,6 +74,7 @@ contract LoveBirds is ERC721, IERC2981, DefaultOperatorFilterer  {
         }else{
             if(_uris.length != 2) revert InvalidUris();
         }
+        delete uris[_tokenId][_foundLove];
         for(uint8 i=0; i < _uris.length; i++){
             uris[_tokenId][_foundLove].push(_uris[i]);
         }
@@ -95,14 +96,14 @@ contract LoveBirds is ERC721, IERC2981, DefaultOperatorFilterer  {
     }
 
     function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
-        string memory name = _tokenId == 0 ? 'Left Bird' : 'Right Bird';
-        string memory description = 'Life is better when you are with the one you love';
+        string memory name = _tokenId == 0 ? 'Noah' : 'Allie';
+        string memory description = 'Swear an oath to bring them both within their lovers light';
         string memory image;
         bool searchCondition;
         if(_tokenId == 0){
-            searchCondition = (block.number % 86400 < 57600);
+            searchCondition = (block.number % 7200 >= 4800);
         }else{
-            searchCondition = (block.number % 86400 >= 28800);
+            searchCondition = (block.number % 7200 < 2400);
         }
         if(foundLove || searchCondition){
             image = uris[_tokenId][foundLove][0];
