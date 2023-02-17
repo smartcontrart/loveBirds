@@ -44,6 +44,9 @@ html, body{
     justify-content: center !important;
     text-align: center !important;
   }
+  .visual{
+    width: 250px;
+  }
 }
 
 /* media lg */

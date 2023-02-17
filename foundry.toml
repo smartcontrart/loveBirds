@@ -9,3 +9,6 @@ fs_permissions = [{ access = "read", path = "./"}]
 
 goerli = "${GOERLI_RPC_URL}"
 goerli = { key = "${ETHERSCAN_API_KEY}" }
+
+mainnet = "${MAINNET_RPC_URL}"
+mainnet = { key = "${ETHERSCAN_API_KEY}" }
